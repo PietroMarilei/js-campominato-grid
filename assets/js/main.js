@@ -8,20 +8,19 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 // devo generare una cella x 100 volte
 const containerElement = document.querySelector('.container')
 // seleziono il container dalla DOM
-// perché se usavogetElementByClassName non va ?
+// perché se usavo getElementByClassName non va ? perché InnerHTML non gli piace 
+
 
 
 const numbOfCells = 100
 
 for (let i = 0; i < numbOfCells; i++) {
-    const thisCell = numbOfCells[i];
-
-    const cellCreator = `<div class="cell"></div>`;
+    const cellCreator = `<div class="cell t">${i}</div>`;
     // creo una variabile con dentro una stringa che ha proprio il markUp giusto
+    // ci scrivo giá il numero con TL che é lo stesso di i
     containerElement.innerHTML += cellCreator
-
+    // scrivodentro a container il markup
 }
-// devo scriverci all'interno un numero progressivo
 
 
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.

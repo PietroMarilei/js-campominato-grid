@@ -4,8 +4,17 @@
     box-sizing: border-box;
 }
 
+.container {
+    background-color: aquamarine;
+    padding: 3rem;
+}
+
 .cell {
     width: calc(100% / 10);
     aspect-ratio: 1;
-    border: 1px solid white;
+    border: 1px solid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
