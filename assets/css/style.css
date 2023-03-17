@@ -7,6 +7,9 @@
 .container {
     background-color: aquamarine;
     padding: 3rem;
+
+    width: 80%;
+    margin: auto;
 }
 
 .cell {
@@ -22,3 +25,5 @@
 .activeCell {
     background-color: lightskyblue;
 }
+
+#play_button {}
