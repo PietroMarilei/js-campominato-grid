@@ -4,17 +4,26 @@ Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata. */
 const buttonElement = document.getElementById("play_button");
 
+const selectElement = document.getElementById("difficulty");
+
+let numbOfCells
+
+
+
 buttonElement.addEventListener('click', function () {
     const containerElement = document.querySelector('.container')
-    containerElement.innerHTML = ''
 
-    // devo generare una cella x 100 volte
+    containerElement.innerHTML = ''
+    // questo affare svuota la tabella prima che succeda altro
 
     // seleziono il container dalla DOM
     // perché se usavo getElementByClassName non va ? perché InnerHTML non gli piace 
 
-    const numbOfCells = 100
+    // -parte bonus
+    numbOfCells = Number(selectElement.value);
+    console.log(numbOfCells);
 
+    // devo generare una cella x 100 volte
     for (let i = 1; i < numbOfCells + 1; i++) {
         const cellCreator = `<div class="cell">${i}</div>`;
         // creo una variabile con dentro una stringa che ha proprio il markUp giusto
@@ -32,7 +41,7 @@ buttonElement.addEventListener('click', function () {
 
     for (let i = 0; i < cellElementArray.length; i++) {
         const thisCell = cellElementArray[i];
-        console.log(thisCell);
+        // console.log(thisCell);
         // ----
         thisCell.addEventListener("click", function () {
             thisCell.classList.toggle("activeCell")
