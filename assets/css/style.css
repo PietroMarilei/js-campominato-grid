@@ -17,11 +17,15 @@
     aspect-ratio: 1;
     border: 1px solid;
     border-radius: 3px;
-    margin: 0.5px;
+    padding: 10px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cell_width {
+    width: calc(100% / 10);
 }
 
 .activeCell {
@@ -29,7 +33,7 @@
     border: 1px solid yellow;
 }
 
-#play_button {
+#playButton {
 
     appearance: none;
     background-color: #FAFBFC;
