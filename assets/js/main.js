@@ -35,9 +35,37 @@ buttonElement.addEventListener('click', function () {
     // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
     const cellElementArray = document.querySelectorAll('.cell')
+    // ---------------------------------------------------------
+    // devo generare 16 bombe
+    let bombsArray = []
+    // il mio array di numeri bomba
+    function randNumb(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    let y = 1
+    while (y <= 16) {
+
+        let rndNumb = randNumb(1, numbOfCells);
+
+        if (!bombsArray.includes(rndNumb)) {
+            // questo verifica se bombsArray NON include giá il numero, nel caso lo aggiunge all'array
+            bombsArray.push(rndNumb)
+
+        } else {
+
+            continue;
+        }
+
+        y++
+    }
+
+    console.log(bombsArray);
+    // ---------------------------------------------------------------
 
 
-    // selezionare tutte le celle cosí crea una sorta di Array con dentro tutte le singole celle
+    // selezionare tutte le celle cosí creo un Array con dentro tutte le singole celle
+
 
     for (let i = 0; i < cellElementArray.length; i++) {
         const thisCell = cellElementArray[i];
@@ -45,14 +73,22 @@ buttonElement.addEventListener('click', function () {
         // ----
         thisCell.addEventListener("click", function () {
             thisCell.classList.toggle("activeCell")
-
-
         })
 
         // ho aggiunto ad ogni cella (ciclando dentro l'array di tutte le celle) un event listener che toggla la classe "activeCell"
 
         thisCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
-        // Perché non va questo ?
+        // prendo ogni cella e gli aggiungo la proprietá css width calc etc. per fare tornare le dimensioni
+
+
+        if (i == bombsArray[i]) {
+            console.log('bomba');
+            thisCell.classList.add('bomb')
+        }
+
+
+
+
 
     }
 
@@ -64,4 +100,10 @@ buttonElement.addEventListener('click', function () {
 
 
 
-// il bottone richiede un event listener che attiva tutto il codice, lo facciamo per ultimo
+
+
+
+
+
+
+
