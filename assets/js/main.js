@@ -16,7 +16,6 @@ buttonElement.addEventListener('click', function () {
     containerElement.innerHTML = ''
     // questo affare svuota la tabella prima che succeda altro
 
-    // -parte bonus
     numbOfCells = Number(selectElement.value);
     console.log(numbOfCells);
 
@@ -32,9 +31,8 @@ buttonElement.addEventListener('click', function () {
 
     }
 
-    // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
-
     const cellElementArray = document.querySelectorAll('.cell')
+
     // ---------------------------------------------------------
     // devo generare 16 bombe
     let bombsArray = []
@@ -69,10 +67,11 @@ buttonElement.addEventListener('click', function () {
 
     for (let i = 0; i < cellElementArray.length; i++) {
         const thisCell = cellElementArray[i];
-        // console.log(thisCell);
+
         // ----
         thisCell.addEventListener("click", function () {
             thisCell.classList.toggle("activeCell")
+            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
         })
 
         // ho aggiunto ad ogni cella (ciclando dentro l'array di tutte le celle) un event listener che toggla la classe "activeCell"
@@ -80,8 +79,11 @@ buttonElement.addEventListener('click', function () {
         thisCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
         // prendo ogni cella e gli aggiungo la proprietá css width calc etc. per fare tornare le dimensioni
 
+        const cellNumb = Number(thisCell.textContent);
+        console.log(cellNumb);
 
-        if (i == bombsArray[i]) {
+        if (bombsArray.includes(cellNumb)) {
+
             console.log('bomba');
             thisCell.classList.add('bomb')
         }
