@@ -22,21 +22,23 @@ function generateField(cellContainer, numbOfCells,) {
         const thisCell = numbOfCells[i];
         // ☝ questo prende via via le singole celle
 
-        const cellMKCreator = `<div class="cell">${i}</div>`;
-        // creo una variabile con dentro una stringa che ha proprio il markUp giusto
-        // ci scrivo giá il numero con TL che é lo stesso di i
-        containerElement.innerHTML += cellMKCreator
-        // scrivodentro a container il markup
-        // ------------------------
-        // qua sotto modifico le celle 👇
-        thisCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
-        // questo gli da le dimensione corretta
+        const singleCell = document.createElement('div');
+
+        cellContainer.appendChild(singleCell);
+        // ci serve un elemento della DOM, lo creo e li aggiungo uno dietro l'altro
+
+        singleCell.className = 'cell'
+        singleCell.textContent = `${i}`
+        // questo aggiunge il contenuto
+        singleCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
+
+        // gli assegno le prorietá che ci servono
 
         //💣 ad ogni cella aggiungo gli eventi al click
 
-        thisCell.addEventListener("click", function () {
-
-            thisCell.classList.toggle("activeCell")
+        singleCell.addEventListener("click", function () {
+            console.log('premuto');
+            singleCell.classList.toggle("activeCell")
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
         })
     }
@@ -64,10 +66,15 @@ function genBombsArray(maxBombs, numbOfCells) {
 }
 
 
+
+
+
+
+
 // qua sotto si scatena l'evento play ⬇️ 🕹️
 
 buttonElement.addEventListener('click', function () {
-    console.log("play");
+    console.log("premuto il tasto play");
 
     numbOfCells = Number(selectElement.value);
     // qua leggo il valore scelto dall'utente di difficoltá
@@ -85,9 +92,7 @@ buttonElement.addEventListener('click', function () {
 
 
 
-    // selezionare tutte le celle cosí creo un Array con dentro tutte le singole celle
-
-
+    //🧹  questa parte va in conflitto con la funzione generateField va sistemata includendo il sistema delle bombe
     for (let i = 0; i < cellElementArray.length; i++) {
         const thisCell = cellElementArray[i];
 
@@ -103,11 +108,10 @@ buttonElement.addEventListener('click', function () {
         // prendo ogni cella e gli aggiungo la proprietá css width calc etc. per fare tornare le dimensioni
 
         const cellNumb = Number(thisCell.textContent);
-        console.log(cellNumb);
+        // console.log(cellNumb);
 
         if (bombsArray.includes(cellNumb)) {
 
-            console.log('bomba');
             thisCell.classList.add('bomb')
         }
 
