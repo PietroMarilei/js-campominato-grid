@@ -6,60 +6,66 @@ const buttonElement = document.getElementById("playButton");
 
 const selectElement = document.getElementById("difficulty");
 
+const containerElement = document.querySelector('.container')
+
 let numbOfCells
 
+let bombsArray = []
 
-
-buttonElement.addEventListener('click', function () {
-    const containerElement = document.querySelector('.container')
-
-    containerElement.innerHTML = ''
+function generateField(cellContainer, numbOfCells,) {
+    cellContainer.innerHTML = '';
     // questo affare svuota la tabella prima che succeda altro
 
-    numbOfCells = Number(selectElement.value);
-    console.log(numbOfCells);
 
     // devo generare una cella x 100 volte
     for (let i = 1; i < numbOfCells + 1; i++) {
         const cellCreator = `<div class="cell">${i}</div>`;
-
         // creo una variabile con dentro una stringa che ha proprio il markUp giusto
         // ci scrivo giá il numero con TL che é lo stesso di i
         containerElement.innerHTML += cellCreator
         // scrivodentro a container il markup
-
-
     }
+}
 
-    const cellElementArray = document.querySelectorAll('.cell')
+function genBombsArray(maxBombs, numbOfCells) {
 
-    // ---------------------------------------------------------
-    // devo generare 16 bombe
-    let bombsArray = []
-    // il mio array di numeri bomba
-    function randNumb(min, max) {
+    function rndNumb(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    let y = 1
-    while (y <= 16) {
+    for (let y = 0; y < maxBombs - 1; y++) {
+        // const thisBomb = array[y];
 
-        let rndNumb = randNumb(1, numbOfCells);
+        let randNumb = rndNumb(1, numbOfCells);
 
-        if (!bombsArray.includes(rndNumb)) {
+        if (!bombsArray.includes(randNumb)) {
             // questo verifica se bombsArray NON include giá il numero, nel caso lo aggiunge all'array
-            bombsArray.push(rndNumb)
-
-        } else {
-
-            continue;
+            bombsArray.push(randNumb)
         }
 
-        y++
     }
+}
+
+
+
+buttonElement.addEventListener('click', function () {
+    console.log("play");
+
+    numbOfCells = Number(selectElement.value);
+    // qua leggo il valore scelto dall'utente di difficoltá
+
+    generateField(containerElement, numbOfCells);
+    // questa funzione genera il campo
+
+
+    const cellElementArray = document.querySelectorAll('.cell')
+    // ora posso selezionare la singola cella
+
+    genBombsArray(16, numbOfCells);
+    // genero le dannatissime bombe
 
     console.log(bombsArray);
-    // ---------------------------------------------------------------
+
 
 
     // selezionare tutte le celle cosí creo un Array con dentro tutte le singole celle
