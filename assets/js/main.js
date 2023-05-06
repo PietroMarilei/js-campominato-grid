@@ -19,12 +19,29 @@ function generateField(cellContainer, numbOfCells,) {
 
     // devo generare una cella x 100 volte
     for (let i = 1; i < numbOfCells + 1; i++) {
-        const cellCreator = `<div class="cell">${i}</div>`;
+        const thisCell = numbOfCells[i];
+        // ☝ questo prende via via le singole celle
+
+        const cellMKCreator = `<div class="cell">${i}</div>`;
         // creo una variabile con dentro una stringa che ha proprio il markUp giusto
         // ci scrivo giá il numero con TL che é lo stesso di i
-        containerElement.innerHTML += cellCreator
+        containerElement.innerHTML += cellMKCreator
         // scrivodentro a container il markup
+        // ------------------------
+        // qua sotto modifico le celle 👇
+        thisCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
+        // questo gli da le dimensione corretta
+
+        //💣 ad ogni cella aggiungo gli eventi al click
+
+        thisCell.addEventListener("click", function () {
+
+            thisCell.classList.toggle("activeCell")
+            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
+        })
     }
+
+
 }
 
 function genBombsArray(maxBombs, numbOfCells) {
@@ -47,6 +64,7 @@ function genBombsArray(maxBombs, numbOfCells) {
 }
 
 
+// qua sotto si scatena l'evento play ⬇️ 🕹️
 
 buttonElement.addEventListener('click', function () {
     console.log("play");
@@ -56,7 +74,6 @@ buttonElement.addEventListener('click', function () {
 
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
-
 
     const cellElementArray = document.querySelectorAll('.cell')
     // ora posso selezionare la singola cella
