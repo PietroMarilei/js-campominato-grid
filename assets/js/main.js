@@ -100,8 +100,6 @@ buttonElement.addEventListener('click', function () {
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
 
-    const cellElementArray = document.querySelectorAll('.cell')
-    // ora posso selezionare la singola cella
 
 
 
