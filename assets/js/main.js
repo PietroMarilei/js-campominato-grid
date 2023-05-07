@@ -20,7 +20,7 @@ function generateField(cellContainer, numbOfCells,) {
     // devo generare una cella x 100 volte
     for (let i = 1; i < numbOfCells + 1; i++) {
         const thisCell = numbOfCells[i];
-        // ☝ questo prende via via le singole celle
+        // ☝ questo prende via via le singole celle (inutile?)
 
         const singleCell = document.createElement('div');
 
@@ -34,13 +34,26 @@ function generateField(cellContainer, numbOfCells,) {
 
         // gli assegno le prorietá che ci servono
 
-        //💣 ad ogni cella aggiungo gli eventi al click
+        //📢 ad ogni cella aggiungo gli eventi al click
 
         singleCell.addEventListener("click", function () {
-            console.log('premuto');
+            console.log('premuto cella');
             singleCell.classList.toggle("activeCell")
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
         })
+
+
+        // 🔽🔽 💣💣💣 questo aggiunge le bombe
+
+        const cellNumb = Number(singleCell.textContent);
+        // leggo in contenuto della cella
+
+        if (bombsArray.includes(cellNumb)) {
+            // se sta nell'bombsArray ci aaggiungo la bomba
+
+            singleCell.classList.add('bomb')
+
+        }
     }
 
 
@@ -79,47 +92,20 @@ buttonElement.addEventListener('click', function () {
     numbOfCells = Number(selectElement.value);
     // qua leggo il valore scelto dall'utente di difficoltá
 
+    genBombsArray(16, numbOfCells);
+    // genero le dannatissime bombe
+    console.log(bombsArray);
+
+
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
 
     const cellElementArray = document.querySelectorAll('.cell')
     // ora posso selezionare la singola cella
 
-    genBombsArray(16, numbOfCells);
-    // genero le dannatissime bombe
-
-    console.log(bombsArray);
 
 
 
-    //🧹  questa parte va in conflitto con la funzione generateField va sistemata includendo il sistema delle bombe
-    for (let i = 0; i < cellElementArray.length; i++) {
-        const thisCell = cellElementArray[i];
-
-        // ----
-        thisCell.addEventListener("click", function () {
-            thisCell.classList.toggle("activeCell")
-            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
-        })
-
-        // ho aggiunto ad ogni cella (ciclando dentro l'array di tutte le celle) un event listener che toggla la classe "activeCell"
-
-        thisCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
-        // prendo ogni cella e gli aggiungo la proprietá css width calc etc. per fare tornare le dimensioni
-
-        const cellNumb = Number(thisCell.textContent);
-        // console.log(cellNumb);
-
-        if (bombsArray.includes(cellNumb)) {
-
-            thisCell.classList.add('bomb')
-        }
-
-
-
-
-
-    }
 
 
 
