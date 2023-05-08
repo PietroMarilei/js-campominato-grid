@@ -29,6 +29,8 @@ function generateField(cellContainer, numbOfCells,) {
 
         singleCell.className = 'cell'
         singleCell.textContent = `${i}`
+
+        singleCell.classList.add('hidden')
         // questo aggiunge il contenuto
         singleCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
 
@@ -38,8 +40,8 @@ function generateField(cellContainer, numbOfCells,) {
 
         singleCell.addEventListener("click", function () {
             console.log('premuto cella');
-            singleCell.classList.toggle("activeCell")
-            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
+            singleCell.classList.remove("hidden")
+
         })
 
 
@@ -50,16 +52,34 @@ function generateField(cellContainer, numbOfCells,) {
 
         if (bombsArray.includes(cellNumb)) {
             // se sta nell'bombsArray ci aaggiungo la bomba
-
             singleCell.classList.add('bomb')
 
+
         }
+
+
+        // coordinate 👇
+
+        let firstRow = []
+
+        singleCell.addEventListener('click', function () {
+
+            if (singleCell.textContent <= Math.sqrt(numbOfCells)) {
+                console.log('questo numero é nella prima riga');
+
+            }
+        })
+
     }
+
 
 
 }
 
 function genBombsArray(maxBombs, numbOfCells) {
+
+    bombsArray = []
+    // svuoto l'array 
 
     function rndNumb(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -103,13 +123,7 @@ buttonElement.addEventListener('click', function () {
 
 
 
-
-
-
-
 })
-
-
 
 
 

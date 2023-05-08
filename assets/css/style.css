@@ -27,6 +27,11 @@
     background-color: red;
 }
 
+.hidden {
+    background-color: lightgrey;
+
+}
+
 .activeCell {
     background-color: lightskyblue;
     border: 1px solid yellow;
