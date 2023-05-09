@@ -22,6 +22,8 @@ function generateField(cellContainer, numbOfCells,) {
         const thisCell = numbOfCells[i];
         // ☝ questo prende via via le singole celle (inutile?)
 
+        // 🔽 questo crea le celle via via
+
         const singleCell = document.createElement('div');
 
         cellContainer.appendChild(singleCell);
@@ -45,7 +47,7 @@ function generateField(cellContainer, numbOfCells,) {
         })
 
 
-        // 🔽🔽 💣💣💣 questo aggiunge le bombe
+        // 🔽 💣💣💣 questo aggiunge le bombe
 
         const cellNumb = Number(singleCell.textContent);
         // leggo in contenuto della cella
@@ -60,15 +62,20 @@ function generateField(cellContainer, numbOfCells,) {
 
         // coordinate 👇
 
-        let firstRow = []
+        //❤ idea: non servono le coordinate, basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila. 
 
-        singleCell.addEventListener('click', function () {
+        let cellContent = []
 
-            if (singleCell.textContent <= Math.sqrt(numbOfCells)) {
-                console.log('questo numero é nella prima riga');
+        for (let i = 0; i < numbOfCells.length; i++) {
+            const element = numbOfCells[i];
 
-            }
-        })
+            cellContent.push(Number(singleCell.textContent))
+
+        }
+
+        console.log(cellContent);
+
+        // non fa 
 
     }
 
@@ -124,9 +131,6 @@ buttonElement.addEventListener('click', function () {
 
 
 })
-
-
-
 
 
 
