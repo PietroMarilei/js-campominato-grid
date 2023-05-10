@@ -1,16 +1,18 @@
-/* L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
-Ogni cella ha un numero progressivo, da 1 a 100.
-Ci saranno quindi 10 caselle per ognuna delle 10 righe.
-Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata. */
+// le bombe sono 12, ma si potrebbe poterle impostare!
+
 const buttonElement = document.getElementById("playButton");
 
 const selectElement = document.getElementById("difficulty");
+
+const bombsElement = document.getElementById('bombs')
 
 const containerElement = document.querySelector('.container')
 
 let numbOfCells
 
 let bombsArray = []
+
+
 
 function generateField(cellContainer, numbOfCells,) {
     cellContainer.innerHTML = '';
@@ -30,21 +32,16 @@ function generateField(cellContainer, numbOfCells,) {
         // ci serve un elemento della DOM, lo creo e li aggiungo uno dietro l'altro
 
         singleCell.className = 'cell'
+        // questo aggiunge il contenuto
         singleCell.textContent = `${i}`
 
+
         singleCell.classList.add('hidden')
-        // questo aggiunge il contenuto
+
         singleCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
 
         // gli assegno le prorietá che ci servono
 
-        //📢 ad ogni cella aggiungo gli eventi al click
-
-        singleCell.addEventListener("click", function () {
-            console.log('premuto cella');
-            singleCell.classList.remove("hidden")
-
-        })
 
 
         // 🔽 💣💣💣 questo aggiunge le bombe
@@ -56,34 +53,64 @@ function generateField(cellContainer, numbOfCells,) {
             // se sta nell'bombsArray ci aaggiungo la bomba
             singleCell.classList.add('bomb')
 
+            //❤ idea:  basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila.
+
+
+
+        } else if (bombsArray.includes(cellNumb - 1)) {
+            singleCell.classList.add('green');
+
+
+        } else if (bombsArray.includes(cellNumb + 1)) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells))) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells))) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) - 1)) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) + 1)) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) - 1)) {
+            singleCell.classList.add('green')
+
+        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) + 1)) {
+            singleCell.classList.add('green')
 
         }
 
 
-        // coordinate 👇
+        //📢 ad ogni cella aggiungo gli eventi al click
 
-        //❤ idea: non servono le coordinate, basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila. 
+        singleCell.addEventListener("click", function () {
+            console.log('premuto cella');
+            singleCell.classList.remove("hidden")
 
-        let cellContent = []
+        })
 
-        for (let i = 0; i < numbOfCells.length; i++) {
-            const element = numbOfCells[i];
 
-            cellContent.push(Number(singleCell.textContent))
 
-        }
 
-        console.log(cellContent);
 
-        // non fa 
+
+
+
 
     }
 
 
 
+
+
+
 }
 
-function genBombsArray(maxBombs, numbOfCells) {
+function genBombsArray(numbofBombs, numbOfCells) {
 
     bombsArray = []
     // svuoto l'array 
@@ -92,7 +119,7 @@ function genBombsArray(maxBombs, numbOfCells) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    for (let y = 0; y < maxBombs - 1; y++) {
+    for (let y = 0; y < numbofBombs; y++) {
         // const thisBomb = array[y];
 
         let randNumb = rndNumb(1, numbOfCells);
@@ -119,14 +146,15 @@ buttonElement.addEventListener('click', function () {
     numbOfCells = Number(selectElement.value);
     // qua leggo il valore scelto dall'utente di difficoltá
 
-    genBombsArray(16, numbOfCells);
+    numbofBombs = Number(bombsElement.value)
+
+    genBombsArray(numbofBombs, numbOfCells);
     // genero le dannatissime bombe
     console.log(bombsArray);
 
 
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
-
 
 
 
