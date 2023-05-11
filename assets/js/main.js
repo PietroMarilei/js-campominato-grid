@@ -70,6 +70,7 @@ function generateField(cellContainer, numbOfCells,) {
 
         let latoGriglia = Math.sqrt(numbOfCells);
 
+
         const cellNumb = Number(singleCell.textContent);
         // leggo in contenuto della cella
 
@@ -101,8 +102,6 @@ function generateField(cellContainer, numbOfCells,) {
             singleCell.addEventListener('click', function () {
                 addGreenPoints()
             })
-
-        } else if {
 
         }
 
