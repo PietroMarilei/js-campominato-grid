@@ -10,7 +10,24 @@ const containerElement = document.querySelector('.container')
 
 let numbOfCells
 
+let rowCol = Math.sqrt(numbOfCells);
+
 let bombsArray = []
+
+let playerScore = 0
+
+
+function addGreenPoints() {
+    playerScore += 3
+    console.log("Il punteggio del giocatore è ora di " + playerScore);
+
+}
+
+function addBluePoints() {
+    playerScore +=
+        console.log("Il punteggio del giocatore è ora di " + playerScore);
+
+}
 
 
 
@@ -36,13 +53,20 @@ function generateField(cellContainer, numbOfCells,) {
         singleCell.textContent = `${i}`
 
 
-        singleCell.classList.add('hidden')
+        // singleCell.classList.add('hidden')
 
         singleCell.style.width = `calc(100% / ${Math.sqrt(numbOfCells)})`
 
         // gli assegno le prorietá che ci servono
 
 
+        //📢 ad ogni cella aggiungo gli eventi al click
+
+        singleCell.addEventListener("click", function () {
+            console.log('premuto cella');
+            singleCell.classList.remove("hidden")
+
+        })
 
         // 🔽 💣💣💣 questo aggiunge le bombe
 
@@ -56,48 +80,24 @@ function generateField(cellContainer, numbOfCells,) {
             //❤ idea:  basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila.
 
 
+        } else if (bombsArray.includes(cellNumb - 1)
+            || bombsArray.includes(cellNumb + 1)
+            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells))
+            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells))
+            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) - 1)
+            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) + 1)
+            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) - 1)
+            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) + 1)) {
 
-        } else if (bombsArray.includes(cellNumb - 1)) {
             singleCell.classList.add('green');
+            singleCell.addEventListener('click', function () {
+                addGreenPoints()
+            })
 
-
-        } else if (bombsArray.includes(cellNumb + 1)) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells))) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells))) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) - 1)) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) + 1)) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) - 1)) {
-            singleCell.classList.add('green')
-
-        } else if (bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) + 1)) {
-            singleCell.classList.add('green')
+        } else if (cellNumb <= rowCol && cellNumb >= rowCol
+        ) {
 
         }
-
-
-        //📢 ad ogni cella aggiungo gli eventi al click
-
-        singleCell.addEventListener("click", function () {
-            console.log('premuto cella');
-            singleCell.classList.remove("hidden")
-
-        })
-
-
-
-
-
-
 
 
 
@@ -108,7 +108,19 @@ function generateField(cellContainer, numbOfCells,) {
 
 
 
+
+
+
+
+
 }
+
+
+
+
+
+
+
 
 function genBombsArray(numbofBombs, numbOfCells) {
 
