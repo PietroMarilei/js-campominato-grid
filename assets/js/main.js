@@ -10,8 +10,6 @@ const containerElement = document.querySelector('.container')
 
 let numbOfCells
 
-let rowCol = Math.sqrt(numbOfCells);
-
 let bombsArray = []
 
 let playerScore = 0
@@ -70,6 +68,8 @@ function generateField(cellContainer, numbOfCells,) {
 
         // 🔽 💣💣💣 questo aggiunge le bombe
 
+        let latoGriglia = Math.sqrt(numbOfCells);
+
         const cellNumb = Number(singleCell.textContent);
         // leggo in contenuto della cella
 
@@ -80,22 +80,29 @@ function generateField(cellContainer, numbOfCells,) {
             //❤ idea:  basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila.
 
 
+
         } else if (bombsArray.includes(cellNumb - 1)
             || bombsArray.includes(cellNumb + 1)
-            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells))
-            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells))
-            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) - 1)
-            || bombsArray.includes(cellNumb - Math.sqrt(numbOfCells) + 1)
-            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) - 1)
-            || bombsArray.includes(cellNumb + Math.sqrt(numbOfCells) + 1)) {
+            || bombsArray.includes(cellNumb - latoGriglia)
+            // casella sopra ☝
+            || bombsArray.includes(cellNumb + latoGriglia)
+            // casella sotto ☝
+            || bombsArray.includes(cellNumb - latoGriglia - 1)
+            // casella diagonale sopra sinistra ☝
+            || bombsArray.includes(cellNumb - latoGriglia + 1)
+            // casella diagonale sopra destra ☝
+            || bombsArray.includes(cellNumb + latoGriglia - 1)
+            // casella diagonale sotto sinistra ☝
+            || bombsArray.includes(cellNumb + latoGriglia + 1)
+            // casella diagonale
+        ) {
 
             singleCell.classList.add('green');
             singleCell.addEventListener('click', function () {
                 addGreenPoints()
             })
 
-        } else if (cellNumb <= rowCol && cellNumb >= rowCol
-        ) {
+        } else if {
 
         }
 
