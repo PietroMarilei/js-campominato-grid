@@ -69,8 +69,6 @@ function generateField(cellContainer, numbOfCells,) {
         // 🔽 💣💣💣 questo aggiunge le bombe
 
         let latoGriglia = Math.sqrt(numbOfCells);
-
-
         const cellNumb = Number(singleCell.textContent);
         // leggo in contenuto della cella
 
@@ -78,10 +76,11 @@ function generateField(cellContainer, numbOfCells,) {
             // se sta nell'bombsArray ci aaggiungo la bomba
             singleCell.classList.add('bomb')
 
+
+
+            // 🔽🔽💚 questo crea le caselle verdi 
+
             //❤ idea:  basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila.
-
-
-
         } else if (bombsArray.includes(cellNumb - 1)
             || bombsArray.includes(cellNumb + 1)
             || bombsArray.includes(cellNumb - latoGriglia)
@@ -103,7 +102,12 @@ function generateField(cellContainer, numbOfCells,) {
                 addGreenPoints()
             })
 
+        } else if (bombsArray.includes(cellNumb) == (latoGriglia + 1)) {
+            // se la bomba é 21
+            console.log("bomba sul bordo");
+            // perché non va ?
         }
+
 
 
 
@@ -111,19 +115,7 @@ function generateField(cellContainer, numbOfCells,) {
 
 
 
-
-
-
-
-
-
-
-
 }
-
-
-
-
 
 
 
