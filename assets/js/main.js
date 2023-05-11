@@ -102,7 +102,10 @@ function generateField(cellContainer, numbOfCells,) {
                 addGreenPoints()
             })
 
-        } else if (bombsArray.includes(cellNumb) == (latoGriglia + 1)) {
+        }
+
+
+        if (bombsArray.includes(cellNumb) == (latoGriglia + 1)) {
             // se la bomba é 21
             console.log("bomba sul bordo");
             // perché non va ?
