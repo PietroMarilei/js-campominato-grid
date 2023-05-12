@@ -68,32 +68,32 @@ function generateField(cellContainer, numbOfCells,) {
 
         // 🔽 💣💣💣 questo aggiunge le bombe
 
-        let latoGriglia = Math.sqrt(numbOfCells);
+        let gridLength = Math.sqrt(numbOfCells);
         const cellNumb = Number(singleCell.textContent);
-        // leggo in contenuto della cella
+
+        const atRightSide = cellNumb % gridLength === 0;
+        const atLeftSide = (cellNumb) % gridLength === 1;
+
 
         if (bombsArray.includes(cellNumb)) {
             // se sta nell'bombsArray ci aaggiungo la bomba
             singleCell.classList.add('bomb')
 
-
-
             // 🔽🔽💚 questo crea le caselle verdi 
 
-            //❤ idea:  basta leggere il numero delle caselle. Quella con la bomba é x. Quella alla sua destra é x+1, x-1 a sinistra. Quella sopra é x-lafila, quella sotto é x+lafila.
         } else if (bombsArray.includes(cellNumb - 1)
             || bombsArray.includes(cellNumb + 1)
-            || bombsArray.includes(cellNumb - latoGriglia)
+            || bombsArray.includes(cellNumb - gridLength)
             // casella sopra ☝
-            || bombsArray.includes(cellNumb + latoGriglia)
+            || bombsArray.includes(cellNumb + gridLength)
             // casella sotto ☝
-            || bombsArray.includes(cellNumb - latoGriglia - 1)
+            || bombsArray.includes(cellNumb - gridLength - 1)
             // casella diagonale sopra sinistra ☝
-            || bombsArray.includes(cellNumb - latoGriglia + 1)
+            || bombsArray.includes(cellNumb - gridLength + 1)
             // casella diagonale sopra destra ☝
-            || bombsArray.includes(cellNumb + latoGriglia - 1)
+            || bombsArray.includes(cellNumb + gridLength - 1)
             // casella diagonale sotto sinistra ☝
-            || bombsArray.includes(cellNumb + latoGriglia + 1)
+            || bombsArray.includes(cellNumb + gridLength + 1)
             // casella diagonale
         ) {
 
@@ -102,21 +102,21 @@ function generateField(cellContainer, numbOfCells,) {
                 addGreenPoints()
             })
 
+        } else if (!atLeftSide && bombsArray.includes(cellNumb - 1)
+
+            || !atRightSide && bombsArray.includes(cellNumb + 1)
+            || bombsArray.includes(cellNumb - gridLength)
+            || bombsArray.includes(cellNumb + gridLength)
+            || !atLeftSide && bombsArray.includes(cellNumb - gridLength - 1)
+            || !atRightSide && bombsArray.includes(cellNumb - gridLength + 1)
+            || !atLeftSide && bombsArray.includes(cellNumb + gridLength - 1)
+            || !atRightSide && bombsArray.includes(cellNumb + gridLength + 1)
+        ) {
+            singleCell.classList.remove('green')
+            console.log("at the side");
         }
-
-
-        if (bombsArray.includes(cellNumb) == (latoGriglia + 1)) {
-            // se la bomba é 21
-            console.log("bomba sul bordo");
-            // perché non va ?
-        }
-
-
-
 
     }
-
-
 
 }
 
