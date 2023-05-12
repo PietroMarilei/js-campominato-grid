@@ -72,7 +72,7 @@ function generateField(cellContainer, numbOfCells,) {
         const cellNumb = Number(singleCell.textContent);
 
         const atRightSide = cellNumb % gridLength === 0;
-        const atLeftSide = (cellNumb) % gridLength === 1;
+        const atLeftSide = (cellNumb - 1) % gridLength === 0;
 
 
         if (bombsArray.includes(cellNumb)) {
@@ -94,6 +94,32 @@ function generateField(cellContainer, numbOfCells,) {
             singleCell.classList.add('green');
             singleCell.addEventListener('click', function () {
                 addGreenPoints()
+            })
+
+            // 🔽🔽💙 questo crea le caselle blue
+
+        } else if (!atLeftSide && bombsArray.includes(cellNumb - 2)
+            || !atRightSide && bombsArray.includes(cellNumb + 2)
+
+            || bombsArray.includes(cellNumb - (gridLength * 2))
+            || bombsArray.includes(cellNumb + (gridLength * 2))
+
+            || !atLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
+            || !atLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
+            || !atLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+            || !atRightSide && bombsArray.includes(cellNumb - gridLength + 2)
+            || !atRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
+            || !atRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+            || !atLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
+            || !atLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
+            || !atLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+            || !atRightSide && bombsArray.includes(cellNumb + gridLength + 2)
+            || !atRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
+            || !atRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)) {
+
+            singleCell.classList.add('blue');
+            singleCell.addEventListener('click', function () {
+                addBluePoints()
             })
 
         }
