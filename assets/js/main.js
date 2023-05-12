@@ -81,29 +81,7 @@ function generateField(cellContainer, numbOfCells,) {
 
             // 🔽🔽💚 questo crea le caselle verdi 
 
-        } else if (bombsArray.includes(cellNumb - 1)
-            || bombsArray.includes(cellNumb + 1)
-            || bombsArray.includes(cellNumb - gridLength)
-            // casella sopra ☝
-            || bombsArray.includes(cellNumb + gridLength)
-            // casella sotto ☝
-            || bombsArray.includes(cellNumb - gridLength - 1)
-            // casella diagonale sopra sinistra ☝
-            || bombsArray.includes(cellNumb - gridLength + 1)
-            // casella diagonale sopra destra ☝
-            || bombsArray.includes(cellNumb + gridLength - 1)
-            // casella diagonale sotto sinistra ☝
-            || bombsArray.includes(cellNumb + gridLength + 1)
-            // casella diagonale
-        ) {
-
-            singleCell.classList.add('green');
-            singleCell.addEventListener('click', function () {
-                addGreenPoints()
-            })
-
         } else if (!atLeftSide && bombsArray.includes(cellNumb - 1)
-
             || !atRightSide && bombsArray.includes(cellNumb + 1)
             || bombsArray.includes(cellNumb - gridLength)
             || bombsArray.includes(cellNumb + gridLength)
@@ -112,8 +90,12 @@ function generateField(cellContainer, numbOfCells,) {
             || !atLeftSide && bombsArray.includes(cellNumb + gridLength - 1)
             || !atRightSide && bombsArray.includes(cellNumb + gridLength + 1)
         ) {
-            singleCell.classList.remove('green')
-            console.log("at the side");
+
+            singleCell.classList.add('green');
+            singleCell.addEventListener('click', function () {
+                addGreenPoints()
+            })
+
         }
 
     }
