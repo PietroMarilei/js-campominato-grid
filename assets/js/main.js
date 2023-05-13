@@ -74,12 +74,16 @@ function generateField(cellContainer, numbOfCells,) {
         const atRightSide = cellNumb % gridLength === 0;
         const atLeftSide = (cellNumb - 1) % gridLength === 0;
 
+        const twoLeftSide = (cellNumb - 2) % gridLength === 0;
+        const twoRightSide = (cellNumb + 2) % gridLength === 0;
+
+
+
 
         if (bombsArray.includes(cellNumb)) {
-            // se sta nell'bombsArray ci aaggiungo la bomba
             singleCell.classList.add('bomb')
 
-            // 🔽🔽💚 questo crea le caselle verdi 
+            // 🔽🔽💚 this create green cells
 
         } else if (!atLeftSide && bombsArray.includes(cellNumb - 1)
             || !atRightSide && bombsArray.includes(cellNumb + 1)
@@ -96,26 +100,15 @@ function generateField(cellContainer, numbOfCells,) {
                 addGreenPoints()
             })
 
-            // 🔽🔽💙 questo crea le caselle blue
+            // 🔽🔽💙 this create blue cells
 
-        } else if (!atLeftSide && bombsArray.includes(cellNumb - 2)
-            || !atRightSide && bombsArray.includes(cellNumb + 2)
-
+        } else if (
+            bombsArray.includes(cellNumb - 2)
+            || !twoRightSide && bombsArray.includes(cellNumb + 2)
             || bombsArray.includes(cellNumb - (gridLength * 2))
             || bombsArray.includes(cellNumb + (gridLength * 2))
 
-            || !atLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
-            || !atLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
-            || !atLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
-            || !atRightSide && bombsArray.includes(cellNumb - gridLength + 2)
-            || !atRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
-            || !atRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
-            || !atLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
-            || !atLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
-            || !atLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
-            || !atRightSide && bombsArray.includes(cellNumb + gridLength + 2)
-            || !atRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
-            || !atRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)) {
+        ) {
 
             singleCell.classList.add('blue');
             singleCell.addEventListener('click', function () {
@@ -123,6 +116,42 @@ function generateField(cellContainer, numbOfCells,) {
             })
 
         }
+        // } else if (
+        //     !twoLeftSide && bombsArray.includes(cellNumb - 2)
+        //     || !twoRightSide && bombsArray.includes(cellNumb + 2)
+
+        //     || bombsArray.includes(cellNumb - (gridLength * 2))
+        //     || bombsArray.includes(cellNumb + (gridLength * 2))
+        //     // these are the top/bottom cells
+
+        //     || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 1)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 1)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+
+        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
+
+        //     || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
+        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
+        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+        //     || !twoRightSide && bombsArray.includes(cellNumb + gridLength + 2)
+        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
+        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
+
+        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+        // ) {
+
+        //     singleCell.classList.add('blue');
+        //     singleCell.addEventListener('click', function () {
+        //         addBluePoints()
+        //     })
+
 
     }
 
@@ -133,7 +162,7 @@ function generateField(cellContainer, numbOfCells,) {
 
 function genBombsArray(numbofBombs, numbOfCells) {
 
-    bombsArray = []
+    bombsArray = [41]
     // svuoto l'array 
 
     function rndNumb(min, max) {
