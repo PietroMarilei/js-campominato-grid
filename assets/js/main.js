@@ -114,10 +114,16 @@ function generateField(cellContainer, numbOfCells,) {
 
             || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
             // ↖↖ Nord-west-west blue cell (33)
-            || bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+
+            // -----------
+            || bombsArray.includes(cellNumb - (gridLength * 2) - 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
             //  ↖ Nord-west blue cell 34
-            || bombsArray.includes(cellNumb - (gridLength * 2) + 1)
-            // ↗ Nord-est blue cell 36 
+            || bombsArray.includes(cellNumb - (gridLength * 2) + 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
+            // ↗ Nord-est blue cell 36
+            || bombsArray.includes(cellNumb + (gridLength * 2) + 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
+            // ➡ Est blue cell 76
+            // -----------
+
             || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
             // ↗↗ Nord-est-est blue cell 37
             || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
@@ -126,8 +132,6 @@ function generateField(cellContainer, numbOfCells,) {
             // ↘ South-est blue cell 67
             || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
             // ↘↘ South-est-est blue cell 77
-            || bombsArray.includes(cellNumb + (gridLength * 2) + 1)
-            // ➡ Est blue cell 76
             || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
             // ⬅ West blue cell 74
             || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
@@ -144,9 +148,14 @@ function generateField(cellContainer, numbOfCells,) {
                 addBluePoints()
             })
 
-
         }
 
+        // if ((cellNumb % gridLength === 1) && (bombsArray.includes(cellNumb) % gridLength === 0) && cellNumb === bombsArray) {
+        //     singleCell.classList.remove('blue')
+
+        //     console.log('ciao');
+
+        // }
 
     }
 }
