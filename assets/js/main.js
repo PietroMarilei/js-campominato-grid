@@ -66,7 +66,7 @@ function generateField(cellContainer, numbOfCells,) {
 
         })
 
-        // 🔽 💣💣💣 questo aggiunge le bombe
+        // 🔽 💣💣💣 this part adds bombs
 
         let gridLength = Math.sqrt(numbOfCells);
         const cellNumb = Number(singleCell.textContent);
@@ -74,8 +74,14 @@ function generateField(cellContainer, numbOfCells,) {
         const atRightSide = cellNumb % gridLength === 0;
         const atLeftSide = (cellNumb - 1) % gridLength === 0;
 
-        const twoLeftSide = (cellNumb - 2) % gridLength === 0;
-        const twoRightSide = (cellNumb + 2) % gridLength === 0;
+        // const twoLeftSide = (cellNumb - 2) % gridLength === 0;
+        // const twoRightSide = (cellNumb + 2) % gridLength === 0;
+
+        const twoRightSide = cellNumb % gridLength === 0 || (cellNumb + 1) % gridLength === 0;
+        const twoLeftSide = (cellNumb - 1) % gridLength === 0 || (cellNumb) % gridLength === 2;
+
+
+
 
 
 
@@ -103,11 +109,34 @@ function generateField(cellContainer, numbOfCells,) {
             // 🔽🔽💙 this create blue cells
 
         } else if (
-            bombsArray.includes(cellNumb - 2)
+            !twoLeftSide && bombsArray.includes(cellNumb - 2)
             || !twoRightSide && bombsArray.includes(cellNumb + 2)
+
             || bombsArray.includes(cellNumb - (gridLength * 2))
             || bombsArray.includes(cellNumb + (gridLength * 2))
+            // these are the top/bottom cells
 
+            || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
+            || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 1)
+            || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
+            || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+            || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
+            || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 1)
+            || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
+            || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+
+            || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+            || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
+
+            || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
+            || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
+            || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+            || !twoRightSide && bombsArray.includes(cellNumb + gridLength + 2)
+            || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
+            || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
+
+            || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+            || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
         ) {
 
             singleCell.classList.add('blue');
@@ -115,71 +144,63 @@ function generateField(cellContainer, numbOfCells,) {
                 addBluePoints()
             })
 
+
         }
-        // } else if (
-        //     !twoLeftSide && bombsArray.includes(cellNumb - 2)
-        //     || !twoRightSide && bombsArray.includes(cellNumb + 2)
-
-        //     || bombsArray.includes(cellNumb - (gridLength * 2))
-        //     || bombsArray.includes(cellNumb + (gridLength * 2))
-        //     // these are the top/bottom cells
-
-        //     || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 1)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 1)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
-
-        //     || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
-        //     || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
-
-        //     || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
-        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
-        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
-        //     || !twoRightSide && bombsArray.includes(cellNumb + gridLength + 2)
-        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
-        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
-
-        //     || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
-        //     || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
-        // ) {
-
-        //     singleCell.classList.add('blue');
-        //     singleCell.addEventListener('click', function () {
-        //         addBluePoints()
-        //     })
-
 
     }
-
 }
 
+// } else if (
+//     bombsArray.includes(cellNumb - 2)
+//     || !twoRightSide && bombsArray.includes(cellNumb + 2)
+//     || bombsArray.includes(cellNumb - (gridLength * 2))
+//     || bombsArray.includes(cellNumb + (gridLength * 2))
+
+// ) {
+
+//     singleCell.classList.add('blue');
+//     singleCell.addEventListener('click', function () {
+//         addBluePoints()
+//     })
+
+// }
 
 
 
 function genBombsArray(numbofBombs, numbOfCells) {
+    let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [41]
+    bombsArray = [55]
     // svuoto l'array 
 
     function rndNumb(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+
     }
 
     for (let y = 0; y < numbofBombs; y++) {
-        // const thisBomb = array[y];
 
         let randNumb = rndNumb(1, numbOfCells);
+
+        // 🧀 this exludes border numbers
+
+        // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
+        // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
+
+        // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
+        //     bombsArray.push(randNumb)
+
+        // }
+
+
+
 
         if (!bombsArray.includes(randNumb)) {
             // questo verifica se bombsArray NON include giá il numero, nel caso lo aggiunge all'array
             bombsArray.push(randNumb)
         }
-
     }
+
 }
 
 
