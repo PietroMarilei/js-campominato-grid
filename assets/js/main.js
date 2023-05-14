@@ -74,17 +74,10 @@ function generateField(cellContainer, numbOfCells,) {
         const atRightSide = cellNumb % gridLength === 0;
         const atLeftSide = (cellNumb - 1) % gridLength === 0;
 
-        // const twoLeftSide = (cellNumb - 2) % gridLength === 0;
-        // const twoRightSide = (cellNumb + 2) % gridLength === 0;
-
         const twoRightSide = cellNumb % gridLength === 0 || (cellNumb + 1) % gridLength === 0;
+        //check 9+10 nums and 10 multiplies
         const twoLeftSide = (cellNumb - 1) % gridLength === 0 || (cellNumb) % gridLength === 2;
-
-
-
-
-
-
+        // check 1+10 nums and 2+10 nums
 
         if (bombsArray.includes(cellNumb)) {
             singleCell.classList.add('bomb')
@@ -106,42 +99,43 @@ function generateField(cellContainer, numbOfCells,) {
                 addGreenPoints()
             })
 
-            // 🔽🔽💙 this create blue cells
+            // 🔽🔽💙 this create blue cells (example 55)
 
         } else if (
             !twoLeftSide && bombsArray.includes(cellNumb - 2)
             // 53
             || !twoRightSide && bombsArray.includes(cellNumb + 2)
-            //57
+            // 57
+            //left and right blue cell
 
             || bombsArray.includes(cellNumb - (gridLength * 2))
-            // 35
             || bombsArray.includes(cellNumb + (gridLength * 2))
-            // 75
-            // these are the top/bottom cells
+            // these are the top/bottom blue cells
 
             || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 2)
-            || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) - 1)
-            // 33 34
-            || !twoLeftSide && bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+            // ↖↖ Nord-west-west blue cell (33)
+            || bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+            //  ↖ Nord-west blue cell 34
+            || bombsArray.includes(cellNumb - (gridLength * 2) + 1)
+            // ↗ Nord-est blue cell 36 
             || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
-            // 36 37
+            // ↗↗ Nord-est-est blue cell 37
             || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
-            // 47
-            || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
-            // 43
+            // ➡ West blue cell 47
             || !twoRightSide && bombsArray.includes(cellNumb + gridLength + 2)
-            // 67
+            // ↘ South-est blue cell 67
             || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
-            //77
-            || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 1)
-            // 76
-            || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 1)
-            // 74
+            // ↘↘ South-est-est blue cell 77
+            || bombsArray.includes(cellNumb + (gridLength * 2) + 1)
+            // ➡ Est blue cell 76
+            || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+            // ⬅ West blue cell 74
             || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
-            // 73
+            // ↙↙ South-west-west blue cell 73
             || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
-            // 63
+            // ⬅ Est blue cell 63
+            || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
+            // ⬅ Est blue cell 43
 
         ) {
 
@@ -153,30 +147,18 @@ function generateField(cellContainer, numbOfCells,) {
 
         }
 
+
     }
 }
 
-// } else if (
-//     bombsArray.includes(cellNumb - 2)
-//     || !twoRightSide && bombsArray.includes(cellNumb + 2)
-//     || bombsArray.includes(cellNumb - (gridLength * 2))
-//     || bombsArray.includes(cellNumb + (gridLength * 2))
 
-// ) {
-
-//     singleCell.classList.add('blue');
-//     singleCell.addEventListener('click', function () {
-//         addBluePoints()
-//     })
-
-// }
 
 
 
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [31, 70]
+    bombsArray = [51,]
     // svuoto l'array 
 
     function rndNumb(min, max) {
