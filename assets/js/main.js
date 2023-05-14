@@ -10,7 +10,8 @@ const containerElement = document.querySelector('.container')
 
 let numbOfCells
 
-let bombsArray = []
+let bombsArray = new Set([])
+// a set can't have duplicates
 
 let playerScore = 0
 
@@ -32,7 +33,6 @@ function addBluePoints() {
 function generateField(cellContainer, numbOfCells,) {
     cellContainer.innerHTML = '';
     // questo affare svuota la tabella prima che succeda altro
-
 
     // devo generare una cella x 100 volte
     for (let i = 1; i < numbOfCells + 1; i++) {
@@ -158,7 +158,7 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [51,]
+    bombsArray = []
     // svuoto l'array 
 
     function rndNumb(min, max) {
@@ -166,28 +166,23 @@ function genBombsArray(numbofBombs, numbOfCells) {
 
     }
 
-    // for (let y = 0; y < numbofBombs; y++) {
+    for (let y = 0; y < numbofBombs; y++) {
 
-    //     let randNumb = rndNumb(1, numbOfCells);
+        let randNumb = rndNumb(1, numbOfCells);
 
-    //     // 🧀 this exludes border numbers
+        // 🧀 this exludes border numbers
 
-    //     // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
-    //     // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
+        // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
+        // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
 
-    //     // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
-    //     //     bombsArray.push(randNumb)
+        // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
+        //     bombsArray.push(randNumb)
 
-    //     // }
+        // }
 
+        bombsArray.push(randNumb)
 
-
-
-    //     if (!bombsArray.includes(randNumb)) {
-    //         // questo verifica se bombsArray NON include giá il numero, nel caso lo aggiunge all'array
-    //         bombsArray.push(randNumb)
-    //     }
-    // }
+    }
 
 }
 
