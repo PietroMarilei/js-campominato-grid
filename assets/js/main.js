@@ -116,12 +116,16 @@ function generateField(cellContainer, numbOfCells,) {
             // ↖↖ Nord-west-west blue cell (33)
 
             // -----------
-            || bombsArray.includes(cellNumb - (gridLength * 2) - 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
-            //  ↖ Nord-west blue cell 34
-            || bombsArray.includes(cellNumb - (gridLength * 2) + 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
+            // 🔻 bugs right side: 10 nums
+            || bombsArray.includes(cellNumb - (gridLength * 2) + 1)
             // ↗ Nord-est blue cell 36
-            || bombsArray.includes(cellNumb + (gridLength * 2) + 1) && bombsArray.includes(cellNumb - 1) % gridLength === 1
+            || bombsArray.includes(cellNumb + (gridLength * 2) + 1)
             // ➡ Est blue cell 76
+            // 🔻 bugs left side: 10+1 nums
+            || bombsArray.includes(cellNumb - (gridLength * 2) - 1)
+            //  ↖ Nord-west blue cell 34
+            || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+            // ⬅ West blue cell 74
             // -----------
 
             || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
@@ -132,8 +136,6 @@ function generateField(cellContainer, numbOfCells,) {
             // ↘ South-est blue cell 67
             || !twoRightSide && bombsArray.includes(cellNumb + (gridLength * 2) + 2)
             // ↘↘ South-est-est blue cell 77
-            || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
-            // ⬅ West blue cell 74
             || !twoLeftSide && bombsArray.includes(cellNumb + (gridLength * 2) - 2)
             // ↙↙ South-west-west blue cell 73
             || !twoLeftSide && bombsArray.includes(cellNumb + gridLength - 2)
@@ -150,12 +152,9 @@ function generateField(cellContainer, numbOfCells,) {
 
         }
 
-        // if ((cellNumb % gridLength === 1) && (bombsArray.includes(cellNumb) % gridLength === 0) && cellNumb === bombsArray) {
-        //     singleCell.classList.remove('blue')
 
-        //     console.log('ciao');
 
-        // }
+
 
     }
 }
@@ -167,7 +166,8 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = []
+    bombsArray = [31,
+    ]
     // svuoto l'array 
 
     function rndNumb(min, max) {
@@ -175,23 +175,23 @@ function genBombsArray(numbofBombs, numbOfCells) {
 
     }
 
-    for (let y = 0; y < numbofBombs; y++) {
+    //     for (let y = 0; y < numbofBombs; y++) {
 
-        let randNumb = rndNumb(1, numbOfCells);
+    //         let randNumb = rndNumb(1, numbOfCells);
 
-        // 🧀 this exludes border numbers
+    //         // 🧀 this exludes border numbers
 
-        // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
-        // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
+    //         // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
+    //         // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
 
-        // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
-        //     bombsArray.push(randNumb)
+    //         // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
+    //         //     bombsArray.push(randNumb)
 
-        // }
+    //         // }
 
-        bombsArray.push(randNumb)
+    //         bombsArray.push(randNumb)
 
-    }
+    //     }
 
 }
 
