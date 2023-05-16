@@ -100,6 +100,7 @@ function generateField(cellContainer, numbOfCells,) {
             })
 
             // 🔽🔽💙 this create blue cells (example 55)
+            // idk why +-gridLength is inverted
 
         } else if (
             !twoLeftSide && bombsArray.includes(cellNumb - 2)
@@ -146,6 +147,7 @@ function generateField(cellContainer, numbOfCells,) {
         ) {
 
             singleCell.classList.add('blue');
+            singleCell.classList.add('blue');
             singleCell.addEventListener('click', function () {
                 addBluePoints()
             })
@@ -153,6 +155,16 @@ function generateField(cellContainer, numbOfCells,) {
         }
 
 
+        //💔❌ bug tester
+        // all rules inverts -1 e +1 e +/- idk why
+
+        if (bombsArray.includes(cellNumb - (gridLength * 2) - 1)) {
+            console.log(cellNumb);
+            if (bombsArray.includes(cellNumb) % gridLength === 0) {
+                console.log('ciao');
+                singleCell.classList.remove('blue')
+            }
+        }
 
 
 
@@ -166,7 +178,7 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [40
+    bombsArray = [40, 43
     ]
     // svuoto l'array 
 
