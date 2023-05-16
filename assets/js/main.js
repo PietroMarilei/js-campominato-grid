@@ -15,6 +15,8 @@ let bombsArray = new Set([])
 
 let playerScore = 0
 
+let bigArray = []
+
 
 function addGreenPoints() {
     playerScore += 3
@@ -156,20 +158,17 @@ function generateField(cellContainer, numbOfCells,) {
 
 
         //💔❌ bug tester
-        // all rules inverts -1 e +1 e +/- idk why
+        // all rules inverts -1 e +1 e +/- idk why\
 
-        if (bombsArray.includes(cellNumb - (gridLength * 2) - 1)) {
-            console.log(cellNumb);
-            if (bombsArray.includes(cellNumb) % gridLength === 0) {
-                console.log('ciao');
-                singleCell.classList.remove('blue')
-            }
-        }
-
+        bigArray.push(singleCell)
 
 
     }
+
+
+
 }
+
 
 
 
@@ -178,7 +177,7 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [40, 43
+    bombsArray = [43, 40
     ]
     // svuoto l'array 
 
@@ -187,23 +186,23 @@ function genBombsArray(numbofBombs, numbOfCells) {
 
     }
 
-    //     for (let y = 0; y < numbofBombs; y++) {
+    for (let y = 0; y < numbofBombs; y++) {
 
-    //         let randNumb = rndNumb(1, numbOfCells);
+        let randNumb = rndNumb(1, numbOfCells);
 
-    //         // 🧀 this exludes border numbers
+        // 🧀 this exludes border numbers
 
-    //         // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
-    //         // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
+        // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
+        // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
 
-    //         // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
-    //         //     bombsArray.push(randNumb)
+        // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
+        //     bombsArray.push(randNumb)
 
-    //         // }
+        // }
 
-    //         bombsArray.push(randNumb)
+        bombsArray.push(randNumb)
 
-    //     }
+    }
 
 }
 
@@ -230,6 +229,34 @@ buttonElement.addEventListener('click', function () {
 
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
+
+    // //💔❌ bug tester
+    // console.log(bigArray);
+
+
+    // for (let i = 0; i < bigArray.length; i++) {
+    //     const singleCell = bigArray[i];
+
+    //     let cellNumb = singleCell.textContent
+    //     let gridLength = Math.sqrt(numbOfCells);
+    //     let bugBomb
+    //     let atRightSide = cellNumb % gridLength === 0
+
+    //     if (cellNumb % gridLength === 0 && singleCell.matches(".bomb")) {
+    //         bugBomb = bigArray[i + (gridLength * 2) + 1]
+
+    //         console.log(bugBomb);
+
+    //         bugBomb.classList.remove("blue")
+
+    //     } else if (!atRightSide && singleCell.matches(".bomb")) {
+    //         let resto = cellNumb % gridLength
+    //         console.log(resto);
+    //         bugBomb = bigArray[i + (gridLength * 2) + 1 - (resto)]
+    //         bugBomb.classList.add("blue")
+    //         console.log(bugBomb);
+    //     }
+    //}
 
 
 
