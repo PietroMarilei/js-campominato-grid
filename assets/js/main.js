@@ -166,7 +166,7 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [31,
+    bombsArray = [40
     ]
     // svuoto l'array 
 
