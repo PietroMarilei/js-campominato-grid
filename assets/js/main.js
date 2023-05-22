@@ -1,5 +1,6 @@
 // le bombe sono 12, ma si potrebbe poterle impostare!
 
+
 const buttonElement = document.getElementById("playButton");
 
 const selectElement = document.getElementById("difficulty");
@@ -81,6 +82,18 @@ function generateField(cellContainer, numbOfCells,) {
         const twoLeftSide = (cellNumb - 1) % gridLength === 0 || (cellNumb) % gridLength === 2;
         // check 1+10 nums and 2+10 nums
 
+        const even = cellNumb % 2 === 0
+
+
+        // ❌deb test
+
+        // const twoRightSide = (cellNumb + 1) % gridLength === 0;
+
+        // const twoLeftSide = (cellNumb - 1) % gridLength === 1;
+
+
+
+
         if (bombsArray.includes(cellNumb)) {
             singleCell.classList.add('bomb')
 
@@ -146,6 +159,7 @@ function generateField(cellContainer, numbOfCells,) {
             || !twoLeftSide && bombsArray.includes(cellNumb - gridLength - 2)
             // ⬅ Est blue cell 43
 
+
         ) {
 
             singleCell.classList.add('blue');
@@ -165,8 +179,6 @@ function generateField(cellContainer, numbOfCells,) {
 
     }
 
-
-
 }
 
 
@@ -177,8 +189,7 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = [43, 40
-    ]
+    bombsArray = []
     // svuoto l'array 
 
     function rndNumb(min, max) {
@@ -200,7 +211,11 @@ function genBombsArray(numbofBombs, numbOfCells) {
 
         // }
 
-        bombsArray.push(randNumb)
+        if (!bombsArray.includes(randNumb)) {
+            bombsArray.push(randNumb)
+        }
+
+
 
     }
 
@@ -229,34 +244,6 @@ buttonElement.addEventListener('click', function () {
 
     generateField(containerElement, numbOfCells);
     // questa funzione genera il campo
-
-    // //💔❌ bug tester
-    // console.log(bigArray);
-
-
-    // for (let i = 0; i < bigArray.length; i++) {
-    //     const singleCell = bigArray[i];
-
-    //     let cellNumb = singleCell.textContent
-    //     let gridLength = Math.sqrt(numbOfCells);
-    //     let bugBomb
-    //     let atRightSide = cellNumb % gridLength === 0
-
-    //     if (cellNumb % gridLength === 0 && singleCell.matches(".bomb")) {
-    //         bugBomb = bigArray[i + (gridLength * 2) + 1]
-
-    //         console.log(bugBomb);
-
-    //         bugBomb.classList.remove("blue")
-
-    //     } else if (!atRightSide && singleCell.matches(".bomb")) {
-    //         let resto = cellNumb % gridLength
-    //         console.log(resto);
-    //         bugBomb = bigArray[i + (gridLength * 2) + 1 - (resto)]
-    //         bugBomb.classList.add("blue")
-    //         console.log(bugBomb);
-    //     }
-    //}
 
 
 

@@ -1,8 +1,11 @@
+@import "/node_modules/aesthetic-css/src/_loading.scss";
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 .container {
     background-color: grey;
