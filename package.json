@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "aesthetic-css": "^1.0.1"
+  },
+  "devDependencies": {
+    "sass": "^1.62.1"
   }
 }
