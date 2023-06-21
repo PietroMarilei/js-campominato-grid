@@ -12,6 +12,12 @@ buttonElement.addEventListener('click', function () {
 
     cellCreator(numbOfCells);
 
+    // const singleCellEl = document.querySelector('.x1')
+    // console.log(singleCellEl);
+    // singleCellEl.addEventListener('click', function () {
+    //     console.log('cliccato cella');
+    //     singleCellEl.classList.toggle('active');
+    // })
 })
 
 /*
@@ -25,18 +31,17 @@ function cellCreator(numbOfCells) {
 
     for (let i = 1; i <= numbOfCells; i++) {
         console.log('creato cella');
-        containerElement.innerHTML += `<div style="width:calc(100% / ${gridLength});" class="cell x${i}">${i}</div>
+        containerElement.innerHTML += `<div style="width:calc(100% / ${gridLength});" class="cell" id="x${i}">${i}</div>
         </div>`;
         // add clickable
-        let singleCellEl = document.querySelector(`.x${i}`);
+        let singleCellEl = document.getElementById(`x${i}`);
+        console.log(singleCellEl);
 
         singleCellEl.addEventListener('click', function () {
-            console.log('cliccato cella');
-            singleCellEl.classList.toggle('.active');
+            console.log('cliccato cella num ', singleCellEl.innerText);
+            singleCellEl.classList.toggle('active');
         })
 
     }
 
 }
-
-
