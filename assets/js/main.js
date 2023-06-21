@@ -140,13 +140,13 @@ function generateField(cellContainer, numbOfCells,) {
             // 🔻 bugs left side: 10+1 nums
             || bombsArray.includes(cellNumb - (gridLength * 2) - 1)
             //  ↖ Nord-west blue cell 34
-            || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
+            // || bombsArray.includes(cellNumb + (gridLength * 2) - 1)
             // ⬅ West blue cell 74
             // -----------
 
             || !twoRightSide && bombsArray.includes(cellNumb - (gridLength * 2) + 2)
             // ↗↗ Nord-est-est blue cell 37
-            || !twoRightSide && bombsArray.includes(cellNumb - gridLength + 2)
+            || (!twoRightSide && bombsArray.includes(cellNumb - gridLength + 2))
             // ➡ West blue cell 47
             || !twoRightSide && bombsArray.includes(cellNumb + gridLength + 2)
             // ↘ South-est blue cell 67
@@ -189,35 +189,35 @@ function generateField(cellContainer, numbOfCells,) {
 function genBombsArray(numbofBombs, numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
-    bombsArray = []
+    bombsArray = [50]
     // svuoto l'array 
 
-    function rndNumb(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    // function rndNumb(min, max) {
+    //     return Math.floor(Math.random() * (max - min + 1)) + min;
 
-    }
+    // }
 
-    for (let y = 0; y < numbofBombs; y++) {
+    // for (let y = 0; y < numbofBombs; y++) {
 
-        let randNumb = rndNumb(1, numbOfCells);
+    //     let randNumb = rndNumb(1, numbOfCells);
 
-        // 🧀 this exludes border numbers
+    //     // 🧀 this exludes border numbers
 
-        // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
-        // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
+    //     // const atRightSide = randNumb % gridLength === 0 || (randNumb + 1) % gridLength === 0;
+    //     // const atLeftSide = (randNumb - 1) % gridLength === 0 || (randNumb) % gridLength === 2;
 
-        // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
-        //     bombsArray.push(randNumb)
+    //     // if (!atLeftSide & !atRightSide && !bombsArray.includes(randNumb)) {
+    //     //     bombsArray.push(randNumb)
 
-        // }
+    //     // }
 
-        if (!bombsArray.includes(randNumb)) {
-            bombsArray.push(randNumb)
-        }
+    //     if (!bombsArray.includes(randNumb)) {
+    //         bombsArray.push(randNumb)
+    //     }
 
 
 
-    }
+    // }
 
 }
 
